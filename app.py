@@ -1,5 +1,6 @@
+# -*- coding: utf-8 -*-
 # app.py
-# Polished Compliance-Gated Mission Control — Streamlit prototype (enhanced)
+# Polished Compliance-Gated Mission Control â€” Streamlit prototype (enhanced)
 import streamlit as st
 import pandas as pd
 import io, json, zipfile, datetime
@@ -114,7 +115,7 @@ def create_evidence_zip(selected_df, title, user, priority, charts=[]):
     c = canvas.Canvas(pdf_buf, pagesize=A4)
     W, H = A4
     c.setFont("Helvetica-Bold", 16)
-    c.drawString(40, H-50, "COMPANY AIRLINES — Compliance Evidence")
+    c.drawString(40, H-50, "COMPANY AIRLINES â€” Compliance Evidence")
     c.setFont("Helvetica", 10)
     c.drawString(40, H-70, f"Evidence ID: {evidence_id}")
     c.drawString(40, H-85, f"Title: {title}")
@@ -188,8 +189,8 @@ st.markdown("""
  
 # --- Load data and controls ---
 df = load_df()
-st.title("?? Compliance-Gated Mission Control — Polished Prototype")
-st.caption("Three-layer dashboard: Mission Control (leadership) · Engineering Analytics · Compliance-gated actions")
+st.title("?? Compliance-Gated Mission Control â€” Polished Prototype")
+st.caption("Three-layer dashboard: Mission Control (leadership) Â· Engineering Analytics Â· Compliance-gated actions")
  
 # Sidebar controls
 st.sidebar.header("Presenter & thresholds")
@@ -199,7 +200,7 @@ priority_pct = st.sidebar.slider("Priority trigger (v2.1 share %)", 5, 80, 30)
 min_rows = st.sidebar.number_input("Min rows to package", 1, 50, 2)
  
 # --- Layer 1: Mission Control KPIs ---
-st.subheader("Layer 1 — Mission Control (Executive View)")
+st.subheader("Layer 1 â€” Mission Control (Executive View)")
 k1, k2, k3, k4 = st.columns(4)
 total_aids = int(df['aid_count'].sum())
 k1.markdown(f"<div class='kpi'><strong>Total AIDs</strong><div style='font-size:20px'>{total_aids}</div></div>", unsafe_allow_html=True)
@@ -215,7 +216,7 @@ st.markdown("---")
 left, right = st.columns([2,1], gap="large")
  
 with left:
-    st.subheader("Layer 2 — Engineering Analytics")
+    st.subheader("Layer 2 â€” Engineering Analytics")
     ds = daily_series(df)
     fig_daily = px.line(ds, x='date', y='aid_count', title="Daily AID Count (fleet)")
     fig_daily.update_layout(template="plotly_white", height=300)
@@ -242,7 +243,7 @@ with left:
     st.info(insight)
  
     if v21_pct >= priority_pct:
-        st.markdown("<div class='warning'><strong>PRIORITY:</strong> v2.1 correlated spike detected — recommended evidence packaging.</div>", unsafe_allow_html=True)
+        st.markdown("<div class='warning'><strong>PRIORITY:</strong> v2.1 correlated spike detected â€” recommended evidence packaging.</div>", unsafe_allow_html=True)
     else:
         st.markdown("<div class='panel'><strong>No priority action at this threshold.</strong></div>", unsafe_allow_html=True)
  
